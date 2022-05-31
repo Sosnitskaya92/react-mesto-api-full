@@ -1,0 +1,26 @@
+.login__enter {
+  width: 358px;
+  height: 50px;
+  background: #FFF;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  border: none;
+  margin-top: 216px;
+  border-radius: 2px;
+}
+
+.login__enter:hover{
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px){
+  .login__enter {
+      width: 260px;
+      height: 46px;
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 173px; 
+  }
+}

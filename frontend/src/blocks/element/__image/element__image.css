@@ -1,0 +1,11 @@
+.element__image {
+  width: 100%;
+  min-height: 282px;
+  height: 282px;
+  object-fit: cover;
+  transition: transform .8s linear;
+}
+
+.element__image:hover {
+  transform: scale(1.1, 1.1);
+}

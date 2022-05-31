@@ -1,0 +1,8 @@
+.element__heart-number {
+  margin: 0;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 16px;
+  max-height: 13px;
+  color: #000000;
+}

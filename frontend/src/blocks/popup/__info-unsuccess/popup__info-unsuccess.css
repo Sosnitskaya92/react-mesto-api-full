@@ -1,0 +1,5 @@
+.popup__info-unsuccess {
+    background-image: url("../../../images/image__icon-unsuccess.svg");
+    width: 120px;
+    height: 120px;
+}

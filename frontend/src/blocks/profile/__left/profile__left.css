@@ -1,0 +1,9 @@
+.profile__left {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  .profile__left {
+    flex-direction: column;
+  }
+}

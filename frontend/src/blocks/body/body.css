@@ -1,0 +1,14 @@
+.body {
+  background-color: #000;
+  font-family: 'Inter', 'Arial', sans-serif;
+  /* Сглаживание текста*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Подгонка размера шрифта*/
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  color: white;
+  margin: 0;
+  padding: 0;
+}

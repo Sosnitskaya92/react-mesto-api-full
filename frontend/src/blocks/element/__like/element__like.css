@@ -1,0 +1,8 @@
+.element__like {
+  display: flex;
+  flex-direction: column;
+  max-height: 35px;
+  max-width: 22px;
+  justify-content: center;
+  align-items: center;
+}

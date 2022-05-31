@@ -1,0 +1,28 @@
+.popup__delete {
+    background-color: #000;
+    color: #fff;
+    width: 358px;
+    height: 50px;
+    cursor: pointer;
+    transition: opacity .2s linear;
+    border-radius: 2px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 38px;
+  }
+  
+  .popup__delete:hover {
+    opacity: .8;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .popup__delete {
+      width: 238px;
+      height: 46px;
+      font-size: 14px;
+      line-height: 17px;
+      margin-top: 45px;
+    }
+  }

@@ -1,0 +1,4 @@
+.element__delete_inactive {
+  display: none;
+  pointer-events: none;
+}
