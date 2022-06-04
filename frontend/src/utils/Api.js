@@ -18,7 +18,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}users/me`, {
       method: "GET",
-      headers: this._headers   
+      credentials: 'include',
     })
     .then(this._checkResponse)
     .catch(err => this._errorHandler(err));
@@ -27,7 +27,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}cards/`, {
       method: 'GET',
-      headers: this._headers
+      credentials: 'include',
     })
     .then(this._checkResponse)
     .catch(err => this._errorHandler(err));  
@@ -36,7 +36,7 @@ class Api {
   editUserInfo(data) {
     return fetch(`${this._baseUrl}users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify(data)
     })
     .then(this._checkResponse)
@@ -46,7 +46,7 @@ class Api {
   addCard(data) {
     return fetch(`${this._baseUrl}cards/`, {
       method: 'POST',
-      headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify(data)
     })
     .then(this._checkResponse)
@@ -56,7 +56,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      credentials: 'include',
     })
     .then(this._checkResponse)
     .catch(err => this._errorHandler(err));
@@ -65,7 +65,7 @@ class Api {
   putCardLike(cardId) {
     return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      credentials: 'include',
     })
     .then(this._checkResponse)
     .catch(err => this._errorHandler(err));
@@ -74,7 +74,7 @@ class Api {
   deleteCardLike(cardId) {
     return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      credentials: 'include',
     })
     .then(this._checkResponse)
     .catch(err => this._errorHandler(err));
@@ -91,7 +91,7 @@ class Api {
   editAvatar(data) {
     return fetch(`${this._baseUrl}users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      credentials: 'include', 
       body: JSON.stringify(data)
     })
     .then(this._checkResponse)
@@ -100,11 +100,7 @@ class Api {
 };
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort36/',
-  headers: {
-    authorization: '9bb3333e-8dc8-44bf-a219-29f503167caa',
-    'Content-Type': 'application/json'
-  }
+  baseUrl: 'https://api.domainname.sosnitskay.nomoredomains.sbs',
 })
 
 export default api;
