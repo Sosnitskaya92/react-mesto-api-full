@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { Joi, celebrate, errors } = require('celebrate');
+const cors = require('cors');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const { createUser, login } = require('./controllers/users');
@@ -14,6 +15,16 @@ require('dotenv').config();
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
+app.use(cors({
+  Credential: true,
+  origin: [
+    'http://domainname.sosnitskaya.nomoredomains.xyz',
+    'http://domainname.sosnitskaya.nomoredomains.xyz',
+    'https://localhost:3000',
+    'http://localhost:3000',
+  ],
+}));
 
 app.use(cookieParser());
 
