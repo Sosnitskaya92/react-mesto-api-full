@@ -100,7 +100,7 @@ class Api {
 };
 
 const api = new Api({
-  baseUrl: 'https://api.domainname.sosnitskay.nomoredomains.sbs',
+  baseUrl: 'http://localhost:3001', //'api.domainname.sosnitskay.nomoredomains.sbs'
 })
 
 export default api;

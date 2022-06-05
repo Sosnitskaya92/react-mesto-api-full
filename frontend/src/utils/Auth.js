@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.domainname.sosnitskay.nomoredomains.sbs';
+export const BASE_URL = 'http://localhost:3001';
+//export const BASE_URL = 'api.domainname.sosnitskay.nomoredomains.sbs';
 
 
 export const register = (email, password) => {

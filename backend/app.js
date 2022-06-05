@@ -20,7 +20,7 @@ app.use(cors({
   Credential: true,
   origin: [
     'http://domainname.sosnitskaya.nomoredomains.xyz',
-    'http://domainname.sosnitskaya.nomoredomains.xyz',
+    'https://domainname.sosnitskaya.nomoredomains.xyz',
     'https://localhost:3000',
     'http://localhost:3000',
   ],

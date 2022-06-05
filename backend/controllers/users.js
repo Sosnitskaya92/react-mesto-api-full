@@ -110,6 +110,8 @@ module.exports.login = (req, res, next) => {
         sameSite: 'none',
       }).send({ token });
     })
+    //   res.status(200).send({ token });
+    // })
     .catch(() => {
       throw new UnauthorizedError('Неправильные почта или пароль');
     })

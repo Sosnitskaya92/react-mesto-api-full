@@ -95,7 +95,7 @@ function App(props) {
 
   function handleTokenCheck() {
     const token = localStorage.getItem('token');
-
+    
     if (token) {     
       Auth.checkToken(token)
         .then(res => {
