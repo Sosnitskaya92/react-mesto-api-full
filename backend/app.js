@@ -17,12 +17,12 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(cors({
-  Credential: true,
+  credentials: true,
   origin: [
     'http://domainname.sosnitskaya.nomoredomains.xyz',
     'https://domainname.sosnitskaya.nomoredomains.xyz',
-    'https://localhost:3000',
-    'http://localhost:3000',
+    'https://localhost:3001',
+    'http://localhost:3001',
   ],
 }));
 
