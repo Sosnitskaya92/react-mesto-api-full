@@ -47,7 +47,10 @@ class Api {
     return fetch(`${this._baseUrl}cards/`, {
       method: 'POST',
       credentials: 'include',
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      })
     })
     .then(this._checkResponse)
     .catch(err => this._errorHandler(err));
@@ -99,11 +102,11 @@ class Api {
   }
 };
 
-const api = new Api({
-  baseUrl: 'api.domainname.sosnitskay.nomoredomains.sbs', 
-})
 // const api = new Api({
-//   baseUrl: 'http://localhost:3000',
+//   baseUrl: 'https://api.domainname.sosnitskay.nomoredomains.sbs', 
 // })
+const api = new Api({
+  baseUrl: 'http://localhost:3000',
+})
 
 export default api;

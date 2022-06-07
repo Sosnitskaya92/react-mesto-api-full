@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* sosnitskaya92@84.252.139.186:/home/sosnitskaya92/mesto-frontend"
+    "deploy": "npm run build && scp -r ./build/* sosnitskaya92@84.252.139.186:/home/sosnitskaya92/react-mesto-api-full/frontend"
   },
   "eslintConfig": {
     "extends": [

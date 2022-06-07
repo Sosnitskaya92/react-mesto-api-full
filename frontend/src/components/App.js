@@ -101,7 +101,7 @@ function App(props) {
         .then(res => {
           if (res) {
             setLoggedIn(true);
-            setUserEmail(res.data.email);
+            setUserEmail(res.email);
             history.push('/');
             }
         })
