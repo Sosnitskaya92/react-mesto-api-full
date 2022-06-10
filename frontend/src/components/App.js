@@ -108,29 +108,6 @@ function App(props) {
       .catch(err => console.log(err))
     };
 
-<<<<<<< HEAD
-=======
-  React.useEffect(() => {
-    handleTokenCheck()
-  }, [handleTokenCheck])
-
-  function handleTokenCheck() {
-    const token = localStorage.getItem('token');
-    
-    if (token) {     
-      Auth.checkToken(token)
-        .then(res => {
-          if (res) {
-            setLoggedIn(true);
-            setUserEmail(res.email);
-            history.push('/');
-            }
-        })
-        .catch(err => console.log(err))
-    }
-  };
-
->>>>>>> 95b09a1f58efa62c41300fa0c592b07b769cad63
   function handleCardLike(likes, _id) {
     const isLiked = likes.some((i) => i._id === currentUser._id);
 

@@ -55,14 +55,10 @@ class Api {
   addCard(data, token) {
     return fetch(`${this._baseUrl}cards/`, {
       method: 'POST',
-<<<<<<< HEAD
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
-=======
-      credentials: 'include',
->>>>>>> 95b09a1f58efa62c41300fa0c592b07b769cad63
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -136,11 +132,7 @@ class Api {
 //   baseUrl: 'https://api.domainname.sosnitskay.nomoredomains.sbs', 
 // })
 const api = new Api({
-<<<<<<< HEAD
   baseUrl: 'http://localhost:3000/',
-=======
-  baseUrl: 'http://localhost:3000',
->>>>>>> 95b09a1f58efa62c41300fa0c592b07b769cad63
-})
+});
 
 export default api;
