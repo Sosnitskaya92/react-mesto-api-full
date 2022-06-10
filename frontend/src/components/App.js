@@ -37,37 +37,55 @@ function App(props) {
   const [isInfoTooltipOpen, setisInfoTooltipOpen] = React.useState(false);
 
   const history = useHistory();
+  const token = localStorage.getItem('token');
 
-  React.useEffect(()=>{
-    if (loggedIn) {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
+  // const handleTokenCheck = React.useCallback(() => {
+    
+  //   if (token) {     
+  //     Auth.checkToken(token)
+  //       .then(res => {
+  //         if (res) {
+  //           setLoggedIn(true);
+  //           setUserEmail(res.email);
+  //           history.push('/');
+  //           }
+  //       })
+  //       .catch(err => console.log(err))
+  //   }
+  // }, [history, token]);
+
+  React.useEffect(() =>{
+        if (loggedIn) {
+    Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
       .then(([userData, cards]) => {
         setCurrentUser(userData);
         setCards(cards);
       })
-      .then(handleTokenCheck())
+      //.then(handleTokenCheck())
       .catch(err => console.log(err))
     }
-  }, [])
+  }, [loggedIn, token]);
 
   function signOut() {
-    localStorage.removeItem("token");
-    props.history.push("/signin");
+    
+    localStorage.removeItem('token');
+    props.history.push('/signin');
   }
 
   function handleLogin() {
     setLoggedIn(true);
-    handleTokenCheck()
+    //handleTokenCheck()
   }
 
   function handleLoginSubmit({ email, password }, callbackSetValues) {
-    Auth.authorize(email, password)
+    Auth.authorize(email,password, token)
       .then((res) => {
         if (res.token) {
+          localStorage.setItem('token', res.token);
           callbackSetValues();
           handleLogin();
-          localStorage.setItem('token', res.token);
-          history.push('/')
+          setUserEmail(res.email)
+          props.history.push('/')
         } else {
          changeInfoTooltipstatus(); 
          openInfoTooltip();
@@ -77,7 +95,8 @@ function App(props) {
   };
 
   function handleRegisterSubmit({ email, password }) {
-    Auth.register(email, password)
+    
+    Auth.register(email, password, token)
       .then((res) => {
         if (!res.error) {
           openInfoTooltip();
@@ -89,6 +108,8 @@ function App(props) {
       .catch(err => console.log(err))
     };
 
+<<<<<<< HEAD
+=======
   React.useEffect(() => {
     handleTokenCheck()
   }, [handleTokenCheck])
@@ -109,10 +130,11 @@ function App(props) {
     }
   };
 
+>>>>>>> 95b09a1f58efa62c41300fa0c592b07b769cad63
   function handleCardLike(likes, _id) {
     const isLiked = likes.some((i) => i._id === currentUser._id);
 
-    api.changeLikeCardStatus(_id, isLiked)
+    api.changeLikeCardStatus(_id, isLiked, token)
       .then((newCard) => {
         setCards((state) => state.map((c) => (c._id === _id ? newCard : c)));
       })
@@ -120,7 +142,7 @@ function App(props) {
   }
 
   function handleCardDelete(_id) {
-    api.deleteCard(_id)
+    api.deleteCard(_id, token)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== _id));
       })
@@ -161,7 +183,7 @@ function App(props) {
   };
 
   function handleUpdateUser(name, about) {
-    api.editUserInfo(name, about)
+    api.editUserInfo(name, about, token)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -170,7 +192,7 @@ function App(props) {
   }
 
   function handleUpdateAvatar(avatar) {
-    api.editAvatar(avatar)
+    api.editAvatar(avatar, token)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -179,7 +201,7 @@ function App(props) {
   }
 
   function handleAddPlaceSubmit(name, link) {
-    api.addCard(name, link)
+    api.addCard(name, link, token)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
