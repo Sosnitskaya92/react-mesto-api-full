@@ -36,8 +36,8 @@ function App() {
 
   const [isInfoTooltipOpen, setisInfoTooltipOpen] = React.useState(false);
   const [token, setToken] = React.useState('');
-
   const history = useHistory();
+
 
   React.useEffect(() =>{
     function tokenCheck() {
@@ -70,8 +70,8 @@ function App() {
     setLoggedIn(true);
   }
 
-  function handleLoginSubmit({ email, password }) {
-    Auth.authorize(email,password, token)
+  function handleLoginSubmit({email, password}) {
+    Auth.authorize(email,password)
       .then((res) => {
         if (res.token) {
           localStorage.setItem('token', res.token);
@@ -86,9 +86,9 @@ function App() {
       .catch(err => console.log(err));
   };
 
-  function handleRegisterSubmit({ email, password }) {
+  function handleRegisterSubmit({email, password}) {
     
-    Auth.register(email, password, token)
+    Auth.register(email, password)
       .then((res) => {
         if (!res.error) {
           openInfoTooltip();

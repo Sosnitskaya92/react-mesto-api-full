@@ -1,7 +1,7 @@
-//export const BASE_URL = 'http://localhost:3000';
-export const BASE_URL = 'https://api.domainname.sosnitskay.nomoredomains.sbs';
+export const BASE_URL = 'http://localhost:3000';
+//export const BASE_URL = 'https://api.domainname.sosnitskay.nomoredomains.sbs';
 
-export const register = (password, email) => {
+export const register = (email, password) => {
 
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -45,5 +45,4 @@ export const authorize = (email, password) => {
     })
     .then(res => res.json())
     .then(data => data)
-  }
-
+  };

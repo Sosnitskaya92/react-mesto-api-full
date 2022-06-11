@@ -26,9 +26,6 @@ function Login(props) {
         email: values.email,
         password: values.password,
       },
-      // () => {
-      //   setValues({ email: '', password: '' });
-      // }
     );
   }
 

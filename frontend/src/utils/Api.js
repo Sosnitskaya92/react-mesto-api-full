@@ -126,19 +126,19 @@ class Api {
   }
 };
 
-const api = new Api({
-  baseUrl: 'https://api.domainname.sosnitskay.nomoredomains.sbs', 
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': `application/json`,
-  }
-})
 // const api = new Api({
-//   baseUrl: 'http://localhost:3000',
+//   baseUrl: 'https://api.domainname.sosnitskay.nomoredomains.sbs', 
 //   headers: {
 //     'Content-Type': 'application/json',
 //     'Accept': `application/json`,
 //   }
-// });
+// })
+const api = new Api({
+  baseUrl: 'http://localhost:3000',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': `application/json`,
+  }
+});
 
 export default api;
