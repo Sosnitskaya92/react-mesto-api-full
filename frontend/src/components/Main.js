@@ -24,9 +24,9 @@ function Main(props) {
         <button className="profile__add" onClick={props.onAddPlace} type="button" aria-label="Добавить"></button>
       </section>
       <section className="elements">
-         {props.cards.map(item =>
-           <Card card={item} key={item._id} name={item.name} link={item.link} owner={item.owner._id}  onCardClick={props.handleClick} onCardLike={props.handleCardLike} onCardDelete={props.handleCardDelete} />) 
-         }
+         {props.cards.map((item) =>
+           <Card card={item} key={item._id} name={item.name} link={item.link} owner={item.owner._id} onCardClick={props.handleClick} onCardLike={props.handleCardLike} onCardDelete={props.handleCardDelete} />)
+          };
       </section>
     </main>
     )

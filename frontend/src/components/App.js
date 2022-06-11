@@ -16,13 +16,13 @@ import InfoTooltip from './InfoTooltip';
 import ProtectedRoute from './ProtectedRoute';
 import * as Auth from '../utils/Auth';
 
-function App(props) {
+function App() {
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
-  const [selectedCard, setSelectedCard] = React.useState({name: '', link: ''});
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -35,57 +35,49 @@ function App(props) {
   const [InfoTooltipStatus, setInfoTooltipStatus] = React.useState(true);
 
   const [isInfoTooltipOpen, setisInfoTooltipOpen] = React.useState(false);
+  const [token, setToken] = React.useState('');
 
   const history = useHistory();
-  const token = localStorage.getItem('token');
-
-  // const handleTokenCheck = React.useCallback(() => {
-    
-  //   if (token) {     
-  //     Auth.checkToken(token)
-  //       .then(res => {
-  //         if (res) {
-  //           setLoggedIn(true);
-  //           setUserEmail(res.email);
-  //           history.push('/');
-  //           }
-  //       })
-  //       .catch(err => console.log(err))
-  //   }
-  // }, [history, token]);
 
   React.useEffect(() =>{
-        if (loggedIn) {
-    Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
-      .then(([userData, cards]) => {
-        setCurrentUser(userData);
-        setCards(cards);
-      })
-      //.then(handleTokenCheck())
-      .catch(err => console.log(err))
+    function tokenCheck() {
+      if (localStorage.getItem('token')) {
+        const token = localStorage.getItem('token');
+        
+        if (token) {
+          Promise.all([Auth.checkToken(token), api.getUserInfo(token), api.getInitialCards(token)])
+            .then(([userData, user, cards]) => {
+              setUserEmail(userData.data.email);
+              setLoggedIn(true);
+              setToken(localStorage.getItem('token'));
+              history.push('/')
+              setCurrentUser(user.data);
+              setCards(cards.data.reverse());
+            })
+          }
+      }
     }
-  }, [loggedIn, token]);
+    tokenCheck();
+  }, [history, token]);
 
   function signOut() {
     
     localStorage.removeItem('token');
-    props.history.push('/signin');
+    history.push('/signin');
   }
 
   function handleLogin() {
     setLoggedIn(true);
-    //handleTokenCheck()
   }
 
-  function handleLoginSubmit({ email, password }, callbackSetValues) {
+  function handleLoginSubmit({ email, password }) {
     Auth.authorize(email,password, token)
       .then((res) => {
         if (res.token) {
           localStorage.setItem('token', res.token);
-          callbackSetValues();
           handleLogin();
           setUserEmail(res.email)
-          props.history.push('/')
+          history.push('/')
         } else {
          changeInfoTooltipstatus(); 
          openInfoTooltip();
@@ -108,20 +100,20 @@ function App(props) {
       .catch(err => console.log(err))
     };
 
-  function handleCardLike(likes, _id) {
-    const isLiked = likes.some((i) => i._id === currentUser._id);
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
-    api.changeLikeCardStatus(_id, isLiked, token)
+    api.changeLikeCardStatus(card._id, isLiked, token)
       .then((newCard) => {
-        setCards((state) => state.map((c) => (c._id === _id ? newCard : c)));
+        setCards((state) => state.map((c) => (c._id === card._id ? newCard.data : c)));
       })
       .catch(err => console.log(err))
   }
 
-  function handleCardDelete(_id) {
-    api.deleteCard(_id, token)
+  function handleCardDelete(card) {
+    api.deleteCard(card._id, token)
       .then(() => {
-        setCards((state) => state.filter((c) => c._id !== _id));
+        setCards((state) => state.filter((c) => c._id !== card._id));
       })
       .catch(err => console.log(err))
   }
@@ -150,37 +142,37 @@ function App(props) {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setSelectedCard({name: '', link: ''})
+    setSelectedCard({})
     setInfoTooltipStatus(true);
     setisInfoTooltipOpen(false);
   };
 
-  function handleCardClick(name, link) {
-    setSelectedCard({name, link})
+  function handleCardClick(card) {
+    setSelectedCard(card);
   };
 
-  function handleUpdateUser(name, about) {
+  function handleUpdateUser({name, about}) {
     api.editUserInfo(name, about, token)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch(err => console.log(err))
   }
 
-  function handleUpdateAvatar(avatar) {
+  function handleUpdateAvatar({avatar}) {
     api.editAvatar(avatar, token)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch(err => console.log(err))
   }
 
-  function handleAddPlaceSubmit(name, link) {
+  function handleAddPlaceSubmit({name, link}) {
     api.addCard(name, link, token)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard.data, ...cards]);
         closeAllPopups();
       })
       .catch(err => console.log(err))
