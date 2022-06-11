@@ -1,5 +1,5 @@
-//export const BASE_URL = 'http://localhost:3000';
-export const BASE_URL = 'https://api.domainname.sosnitskay.nomoredomains.sbs';
+export const BASE_URL = 'http://localhost:3000';
+//export const BASE_URL = 'https://api.domainname.sosnitskay.nomoredomains.sbs';
 
 export const register = (password, email) => {
 
@@ -8,7 +8,6 @@ export const register = (password, email) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      //'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify({email, password})
   })
@@ -26,7 +25,6 @@ export const authorize = (email, password) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        //'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({email, password})
     })

@@ -17,7 +17,6 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(cors({
-  credentials: true,
   origin: [
     'http://domainname.sosnitskaya.nomoredomains.xyz',
     'https://domainname.sosnitskaya.nomoredomains.xyz',
