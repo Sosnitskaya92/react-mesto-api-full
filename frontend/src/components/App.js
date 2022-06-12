@@ -94,6 +94,7 @@ function App() {
           openInfoTooltip();
           history.push('/signin')
         } else {
+          changeInfoTooltipstatus();
           openInfoTooltip();
         }
     })
