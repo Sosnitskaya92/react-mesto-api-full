@@ -76,7 +76,8 @@ function App() {
         if (res.token) {
           localStorage.setItem('token', res.token);
           handleLogin();
-          setUserEmail(res.email)
+          setUserEmail(email)
+          setToken(localStorage.getItem('token'))
           history.push('/')
         } else {
          changeInfoTooltipstatus(); 
